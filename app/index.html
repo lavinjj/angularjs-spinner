@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>Gravatar Directive Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTTP Interceptor Example">
+    <meta name="author" content="Jim Lavin">
+    <!-- Le styles -->
+    <link href="components/bootstrap.css/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="components/bootstrap.css/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container-fluid" ng-controller="myController">
+    <div id="loadingWidget" class="row-fluid ui-corner-all" style="padding: 0 .7em; display: none;">
+        <div class="loadingContent">
+            <p>
+                <img alt="Loading  Content" src="images/ajax-loader.gif" />&nbsp;Loading
+            </p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <h2>HTTP Interceptor Example</h2>
+    </div>
+    <div class="row-fluid" >
+        <div class="span1">Name</div>
+        <div class="span1">Type</div>
+        <div class="span1">Form</div>
+        <div class="span1">Laboratory</div>
+        <div class="span3">Best For</div>
+        <div class="span5">Notes</div>
+    </div>
+    <div class="row-fluid" ng-repeat="yeast in yeasts | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div class="span1">{{yeast.Name}}</div>
+        <div class="span1">{{yeast.Type}}</div>
+        <div class="span1">{{yeast.Form}}</div>
+        <div class="span1">{{yeast.Laboratory}}</div>
+        <div class="span3">{{yeast.BestFor}}</div>
+        <div class="span5">{{yeast.Notes}}</div>
+    </div>
+    <hr />
+    <div class="well">
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=0">
+            First
+        </button>
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        <span ng-bind="currentPage+1">1</span>/<span ng-bind="numberOfPages()">Loading..</span>
+        <button ng-disabled="currentPage >= yeasts.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
+        <button ng-disabled="currentPage >= yeasts.length/pageSize - 1" ng-click="currentPage=numberOfPages()-1">
+            Last
+        </button>
+    </div>
+</div>
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="components/jquery/jquery.js"></script>
+<script src="components/bootstrap.css/js/bootstrap.js"></script>
+<script src="components/angular/angular.js"></script>
+<script src="components/angularjs-mongolab-promise/mongolabResourceHttp.js"></script>
+<script src="app/app.js"></script>
+<script src="app/data-services.js"></script>
+</body>
+</html>
