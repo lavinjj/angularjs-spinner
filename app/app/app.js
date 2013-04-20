@@ -1,12 +1,12 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-var app = angular.module('myApp', ['mongolabResourceHttp', 'data.services', ]);
+var app = angular.module('myApp', ['mongolabResourceHttp', 'data.services']);
 
 app.constant('_START_REQUEST_', '_START_REQUEST_');
 app.constant('_END_REQUEST_', '_END_REQUEST_');
 
-app.config(['$httpProvider', '_START_REQUEST_', '_END_REQUEST_',   function ($httpProvider, _START_REQUEST_, _END_REQUEST_) {
+app.config(['$httpProvider', '_START_REQUEST_', '_END_REQUEST_', function ($httpProvider, _START_REQUEST_, _END_REQUEST_) {
     var $http,
         interceptor = ['$q', '$injector', function ($q, $injector) {
             var rootScope;
@@ -15,7 +15,7 @@ app.config(['$httpProvider', '_START_REQUEST_', '_END_REQUEST_',   function ($ht
                 // get $http via $injector because of circular dependency problem
                 $http = $http || $injector.get('$http');
                 // don't send notification until all requests are complete
-                if($http.pendingRequests.length < 1) {
+                if ($http.pendingRequests.length < 1) {
                     // get $rootScope via $injector because of circular dependency problem
                     rootScope = rootScope || $injector.get('$rootScope');
                     // send a notification requests are complete
@@ -28,7 +28,7 @@ app.config(['$httpProvider', '_START_REQUEST_', '_END_REQUEST_',   function ($ht
                 // get $http via $injector because of circular dependency problem
                 $http = $http || $injector.get('$http');
                 // don't send notification until all requests are complete
-                if($http.pendingRequests.length < 1) {
+                if ($http.pendingRequests.length < 1) {
                     // get $rootScope via $injector because of circular dependency problem
                     rootScope = rootScope || $injector.get('$rootScope');
                     // send a notification requests are complete
@@ -49,10 +49,10 @@ app.config(['$httpProvider', '_START_REQUEST_', '_END_REQUEST_',   function ($ht
     $httpProvider.responseInterceptors.push(interceptor);
 }]);
 
-app.directive('loadingWidget', ['_START_REQUEST_', '_END_REQUEST_', function(_START_REQUEST_, _END_REQUEST_) {
+app.directive('loadingWidget', ['_START_REQUEST_', '_END_REQUEST_', function (_START_REQUEST_, _END_REQUEST_) {
     return {
         restrict: "A",
-        link: function(scope, element){
+        link: function (scope, element) {
             // hide the element initially
             element.hide();
 
@@ -70,13 +70,13 @@ app.directive('loadingWidget', ['_START_REQUEST_', '_END_REQUEST_', function(_ST
 }]);
 
 app.filter('startFrom', function () {
-        return function (input, start) {
-            start = +start; //parse to int
-            return input.slice(start);
-        }
-    });
+    return function (input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});
 
-function myController($scope, YeastResource) {
+app.controller('myController', ['$scope', 'YeastResource', function ($scope, YeastResource) {
     $scope.yeasts = [];
     $scope.currentPage = 0;
     $scope.pageSize = 10;
@@ -85,11 +85,11 @@ function myController($scope, YeastResource) {
         return Math.ceil($scope.yeasts.length / $scope.pageSize);
     };
 
-    $scope.init = function() {
-        YeastResource.query({}, {sort: {Type: 1, Name: 1}}).then(function(yeast){
+    $scope.init = function () {
+        YeastResource.query({}, {sort: {Type: 1, Name: 1}}).then(function (yeast) {
             $scope.yeasts = yeast;
         });
     };
 
     $scope.init();
-}
+}]);
