@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="container-fluid" ng-controller="myController">
-    <div id="loadingWidget" class="row-fluid ui-corner-all" style="padding: 0 .7em; display: none;">
+    <div id="loadingWidget" class="row-fluid ui-corner-all" style="padding: 0 .7em;" loading-widget >
         <div class="loadingContent">
             <p>
                 <img alt="Loading  Content" src="images/ajax-loader.gif" />&nbsp;Loading
@@ -33,20 +33,24 @@
         <h2>HTTP Interceptor Example</h2>
     </div>
     <div class="row-fluid" >
-        <div class="span1">Name</div>
-        <div class="span1">Type</div>
-        <div class="span1">Form</div>
-        <div class="span1">Laboratory</div>
-        <div class="span3">Best For</div>
-        <div class="span5">Notes</div>
-    </div>
-    <div class="row-fluid" ng-repeat="yeast in yeasts | startFrom:currentPage*pageSize | limitTo:pageSize">
-        <div class="span1">{{yeast.Name}}</div>
-        <div class="span1">{{yeast.Type}}</div>
-        <div class="span1">{{yeast.Form}}</div>
-        <div class="span1">{{yeast.Laboratory}}</div>
-        <div class="span3">{{yeast.BestFor}}</div>
-        <div class="span5">{{yeast.Notes}}</div>
+        <table class="table table-bordered">
+            <thead>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Form</th>
+            <th>Laboratory</th>
+            <th>Best For</th>
+            <th>Notes</th>
+            </thead>
+            <tr ng-repeat="yeast in yeasts | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <th>{{yeast.Name}}</th>
+                <th>{{yeast.Type}}</th>
+                <th>{{yeast.Form}}</th>
+                <th>{{yeast.Laboratory}}</th>
+                <th>{{yeast.BestFor}}</th>
+                <th>{{yeast.Notes}}</th>
+            </tr>
+        </table>
     </div>
     <hr />
     <div class="well">
