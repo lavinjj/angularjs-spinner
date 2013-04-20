@@ -1,13 +1,6 @@
-#AngularJS HTTP Interceptor Loading Widget Example
-
-Sample code from the blog post [Using Response Interceptors to Show and Hide a Loading Widget](http://codingsmackdown.tv/blog/2013/01/02/using-response-interceptors-to-show-and-hide-a-loading-widget/)
-
-
-## LICENSE
-
 The MIT License
 
-Copyright (c) 2012-2013 Coding Smackdown TV, http://codingsmackdown.tv
+Copyright (c) 2012 Pawel Kozlowski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
