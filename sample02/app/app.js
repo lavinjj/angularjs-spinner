@@ -78,9 +78,6 @@ app.factory('requestNotificationChannel', ['$rootScope', function($rootScope){
         onRequestStarted: onRequestStarted,
         onRequestEnded: onRequestEnded
     };
-
-
-
 }]);
 
 app.directive('loadingWidget', ['requestNotificationChannel', function (requestNotificationChannel) {
