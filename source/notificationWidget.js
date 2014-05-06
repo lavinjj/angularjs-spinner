@@ -43,7 +43,7 @@ angular.module('notificationWidget', [])
             }
         }];
 
-    $httpProvider.responseInterceptors.push(interceptor);
+    $httpProvider.interceptors.push(interceptor);
 }])
 // declare the notification pub/sub channel
 .factory('requestNotificationChannel', ['$rootScope', function($rootScope){
